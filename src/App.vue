@@ -6,19 +6,33 @@ import Footer from './components/general/Footer.vue';
 
 <template>
 
+  
+
     <div class="wrapper">
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
+
     </div>
 
     <Header />
+
+    <main>
+
+      <RouterView />
+
+    </main>
+    
     <Footer />
-  <RouterView />
+
 </template>
 
-<style scoped>
+<style lang="scss">
+
+main {
+  background-color: black;
+}
 
 </style>

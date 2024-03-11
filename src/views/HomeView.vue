@@ -1,9 +1,13 @@
 <script setup>
-
+import Searchbar from '@/components/home/Searchbar.vue';
 </script>
 
 <template>
-  <main>
-    
-  </main>
+  
+  <Searchbar />
+
 </template>
+
+<style lang="scss">
+
+</style>
