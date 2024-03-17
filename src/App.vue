@@ -6,8 +6,6 @@ import Footer from './components/general/Footer.vue';
 
 <template>
 
-  
-
     <div class="wrapper">
 
       <nav>
@@ -19,19 +17,15 @@ import Footer from './components/general/Footer.vue';
 
     <Header />
 
-    <main>
+    <RouterView />
 
-      <RouterView />
-
-    </main>
-    
     <Footer />
 
 </template>
 
 <style lang="scss">
 
-main {
+body {
   background-color: black;
 }
 

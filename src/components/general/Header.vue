@@ -28,24 +28,31 @@
 #headerContainer {
 
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center; 
 
     background-color: #C7C7C7;
-    
+    padding: 10px; 
+    overflow-x: hidden; 
 
     .logoContainer {
 
         display: flex;
-
+        align-items: center; 
         font-family: "Neucha", cursive;
-        padding: 15px;
+        padding: 5px; 
 
         img {
-            width: 20%;
+            width: 80px; 
+            margin-right: 5px; 
+            max-width: 100%; 
+            height: auto; 
         }
 
         h2 {
-            padding: 8px;
+            margin: 0; 
+            padding: 0; 
         }
     }
 
@@ -53,11 +60,11 @@
 
         display: flex;
 
-        padding: 10px;
         font-family: "Newsreader", serif;
 
         h3 {
-            padding: 10px;
+            margin: 0; 
+            padding: 5px 10px; 
         }
     }
 }
@@ -67,24 +74,21 @@
 
     #headerContainer {
 
-        display: flex;
-        justify-content: space-between;
-
         .logoContainer {
 
             img {
-                width: 10%;
+                width: 100px; 
             }
 
             h2 {
-                padding: 15px;
+                padding: 10px; 
             }
         }
 
         .homeContainer {
 
             h3 {
-                padding: 25px;
+                padding: 10px 15px; 
             }
         }
     }

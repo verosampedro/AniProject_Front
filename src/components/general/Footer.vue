@@ -25,25 +25,31 @@
 #footerContainer {
 
     background-color: #C7C7C7;
+    overflow-x: hidden; 
 
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    justify-content: center; 
+    align-items: center; 
 
     p {
         padding: 10px;
+        margin: 0; 
     }
 
     .rrssContainer {
 
         display: flex;
-        justify-content: flex-end;
+        justify-content: center; 
+        align-items: center; 
         padding: 10px;
 
         img {
-
-            width: 15%;
+            width: 40px; 
+            height: auto; 
             padding: 5px;
+
+            max-width: 100%; 
+            height: auto; 
         }
     }
 }
@@ -53,10 +59,11 @@
     #footerContainer {
 
         .rrssContainer {
+            margin-top: 0; 
+        }
 
-            img {
-                width: 3%;
-            }
+        img {
+            width: 30px; 
         }
     }
 }
