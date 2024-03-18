@@ -1,5 +1,6 @@
 <script>
 import { ref, onMounted, computed, watch } from 'vue';
+import { useRouter } from 'vue-router';
 import GenreFilter from './GenreFilter.vue';
 
 export default {
@@ -7,6 +8,7 @@ export default {
     GenreFilter
   },
   setup() {
+    const router = useRouter();
     const animes = ref([]);
     const currentPage = ref(1);
     const pageLimit = 16;
@@ -55,6 +57,10 @@ export default {
       fetchAnimes();
     };
 
+    const showAnimeDetails = (id) => {
+      router.push({ name: 'AnimeDetails', params: { id } });
+    };
+
     watch(searchTerm, () => {
       fetchAnimes();
     });
@@ -66,7 +72,8 @@ export default {
       currentPage,
       searchTerm,
       filteredAnimes,
-      filterByGenre
+      filterByGenre,
+      showAnimeDetails
     };
   },
 };
@@ -86,7 +93,7 @@ export default {
 
     <div class="coversContainer">
 
-      <div v-for="anime in filteredAnimes" :key="anime.id" class="cover">
+      <div v-for="anime in filteredAnimes" :key="anime.id" class="cover" @click="showAnimeDetails(anime.id)">
 
         <img v-if="anime.attributes.posterImage && anime.attributes.posterImage.original" :src="anime.attributes.posterImage.original" alt="Anime Cover" class="coverImg" />
         <img v-else src="../assets/img/download.jpg" alt="Anime Cover" class="coverImg" />
