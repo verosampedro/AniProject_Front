@@ -97,6 +97,7 @@ export default {
             <p>RATING: {{ anime.attributes.averageRating }}</p>
             <p>ESTADO: {{ anime.attributes.status }}</p>
             <p>EPISODIOS: {{ anime.attributes.episodeCount }}</p>
+            <p>CLASFICACIÓN POR EDAD: {{ anime.attributes.ageRatingGuide }}</p>
 
           </div>
 
