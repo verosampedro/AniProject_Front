@@ -10,12 +10,12 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/anime/:id',
+      path: '/anime/:animeId',
       name: 'AnimeDetails',
-      props: true,
-      component: () => import('../views/DetailView.vue')
-    }
+      component: () => import('../views/DetailView.vue'),
+      props: true
+    }
   ]
 })
 
-export default router
+export default router

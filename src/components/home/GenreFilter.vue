@@ -37,7 +37,7 @@ export default {
 .genre-filter {
   
   text-align: end;
-  margin-right: 6.5rem;
+  margin-right: 5.5rem;
 
 .select-genre {
   width: 10%;

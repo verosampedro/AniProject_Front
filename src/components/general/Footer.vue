@@ -34,6 +34,7 @@
     p {
         padding: 10px;
         margin: 0; 
+        color: black;
     }
 
     .rrssContainer {

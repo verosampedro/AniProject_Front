@@ -58,9 +58,8 @@ export default {
     };
 
     const showAnimeDetails = (id) => {
-      router.push({ name: 'AnimeDetails', params: { id } });
+    router.push({ name: 'AnimeDetails', params: { animeId: id } });
     };
-
     watch(searchTerm, () => {
       fetchAnimes();
     });
@@ -126,16 +125,26 @@ export default {
 <style lang="scss">
 
   .coversContainer {
-      display: flex;
-      justify-content: center; 
-      flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start; 
+    padding-bottom: 20px; 
   }
 
   .cover {
-      margin: 5px;
-      position: relative; 
-      overflow: hidden; 
-      transition: box-shadow 0.3s ease; 
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+    width: 200px; 
+    height: auto; 
+    margin: 10px; 
+  }
+
+  .coverImg {
+    width: 100%; 
+    height: auto; 
+    margin: 0 auto; 
   }
 
   .cover:hover {
@@ -159,14 +168,10 @@ export default {
       opacity: 1;
   }
 
-  .coverImg {
-      width: 200px;
-  }
-
   .pagination {
-      margin-top: 20px;
-      margin-bottom: 20px; 
-      text-align: center; 
+    margin-top: 20px;
+    margin-bottom: 20px; 
+    text-align: center;
   }
 
   .paginationButton {
