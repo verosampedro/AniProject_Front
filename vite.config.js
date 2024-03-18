@@ -12,5 +12,14 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+              @import "../AniProject_Front/src/assets/scss/font.scss";
+            `,
+      },
+    },
+  },
 })

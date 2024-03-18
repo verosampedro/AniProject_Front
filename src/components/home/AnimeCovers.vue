@@ -85,7 +85,7 @@ export default {
   <div>
 
     <div class="searchbar">
-      <input class="search-input" type="text" v-model="searchTerm" placeholder="¿Qué estás buscando?" />
+      <input class="search-input" type="text" v-model="searchTerm" placeholder="What are you looking for?" />
     </div>
 
     <GenreFilter @filterByGenre="filterByGenre" />
@@ -99,11 +99,11 @@ export default {
 
           <div class="overlay">
 
-            <p>TÍTULO: {{ anime.attributes.canonicalTitle }}</p>
+            <p>TITLE: {{ anime.attributes.canonicalTitle }}</p>
             <p>RATING: {{ anime.attributes.averageRating }}</p>
-            <p>ESTADO: {{ anime.attributes.status }}</p>
-            <p>EPISODIOS: {{ anime.attributes.episodeCount }}</p>
-            <p>CLASFICACIÓN POR EDAD: {{ anime.attributes.ageRatingGuide }}</p>
+            <p>STATUS: {{ anime.attributes.status }}</p>
+            <p>EPISODES: {{ anime.attributes.episodeCount }}</p>
+            <p>AGE RATING GUIDE: {{ anime.attributes.ageRatingGuide }}</p>
 
           </div>
 
@@ -113,8 +113,8 @@ export default {
 
     <div class="pagination">
 
-      <button @click="previousPage" :disabled="currentPage === 1" class="paginationButton">Anterior</button>
-      <button @click="nextPage" class="paginationButton">Siguiente</button>
+      <button @click="previousPage" :disabled="currentPage === 1" class="paginationButton">Previous</button>
+      <button @click="nextPage" class="paginationButton">Next page</button>
 
     </div>
 

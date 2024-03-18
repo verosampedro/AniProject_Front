@@ -22,7 +22,7 @@ export default {
 
     <select v-model="selectedGenre" @change="filterByGenre" class="select-genre">
 
-      <option value="">Todos los géneros</option>
+      <option value="">Genres</option>
       <option v-for="genre in genres" :value="genre" :key="genre">{{ genre }}</option>
 
     </select>
