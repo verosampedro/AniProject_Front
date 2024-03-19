@@ -50,6 +50,15 @@
         <img v-if="anime && anime.attributes.posterImage && anime.attributes.posterImage.original" :src="anime.attributes.posterImage.original" alt="Anime Cover" class="coverImg" />
         <img v-else src="../assets/img/logo.png" alt="Anime Cover" class="coverImg" />
 
+        <div class="libraryContainer">
+
+          <p class="library">Your library</p>
+          <button class="completed">Completed</button>
+          <button class="wishlist">Wishlist</button>
+          <button class="watching">Watching</button>
+
+        </div>
+
       </div>
       
       <div class="right">
@@ -58,12 +67,28 @@
 
           <h2 class="infoText">{{ anime.attributes.canonicalTitle }}</h2>
           <p class="infoText" v-if="anime.attributes.synopsis">{{ anime.attributes.synopsis }}</p>
-          <p class="infoText" v-if="anime.attributes.popularityRank"># {{ anime.attributes.popularityRank }} Popularity Rank</p>
-        
-        </div>
-        <div v-else>
+          <p class="popularityRank" v-if="anime.attributes.popularityRank">♥️ # {{ anime.attributes.popularityRank }} Popularity Rank</p>
+
+          </div>
+
+          <div v-else>
           <p>Loading...</p>
-        </div>
+          </div>
+
+          <div class="detailsOfAnime" v-if="anime">
+
+          <h2>Details of the Anime</h2>
+          <p v-if="anime.attributes.titles && anime.attributes.titles.en">English Title: {{ anime.attributes.titles.en }}</p>
+          <p v-if="anime.attributes.titles && anime.attributes.titles.ja_jp">Japanese Title: {{ anime.attributes.titles.ja_jp }}</p>
+          <p v-if="anime.attributes.subtype && anime.attributes.subtype">Type: {{ anime.attributes.subtype }}</p>
+          <p v-if="anime.attributes.status && anime.attributes.status">Status: {{ anime.attributes.status }}</p>
+          <p v-if="anime.attributes.ageRatingGuide && anime.attributes.ageRatingGuide">Age Rating Guide: {{ anime.attributes.ageRatingGuide }}</p>
+          <p v-if="anime.attributes.episodeCount && anime.attributes.episodeCount">Number of episodes: {{ anime.attributes.episodeCount }}</p>
+          <p v-if="anime.attributes.episodeLength && anime.attributes.episodeLength">Episode length: {{ anime.attributes.episodeLength }}'</p>
+          <p v-if="anime.attributes.totalLength && anime.attributes.totalLength">Total length: {{ anime.attributes.totalLength }}'</p>
+
+          </div>
+
       </div>
     </div>
 
@@ -89,6 +114,60 @@
 
   .left {
     flex: 1; 
+
+    .libraryContainer {
+      border: 1px solid white;
+      padding: 15px;
+      width: 47.8%;
+      margin-left: 12.5rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .library {
+      margin-left: 60px;
+    }
+
+    .completed {
+      background-color: #7BA670;
+      color: white;
+      font-weight: bold;
+      font-size: large;
+      font-family: "Newsreader", serif;
+      padding: 8px;
+      border-radius: 10px;
+      width: 90%;
+      margin-bottom: 10px;
+    }
+
+    .wishlist {
+      background-color: #5F9FA7;
+      color: white;
+      font-weight: bold;
+      font-size: large;
+      font-family: "Newsreader", serif;
+      padding: 8px;
+      border-radius: 10px;
+      width: 90%;
+      margin-bottom: 10px;
+    }
+
+    .watching {
+      background-color: #56355E;
+      color: white;
+      font-weight: bold;
+      font-size: large;
+      font-family: "Newsreader", serif;
+      padding: 8px;
+      border-radius: 10px;
+      width: 90%;
+      margin-bottom: 10px;
+    }
   }
 
   .right {
@@ -107,6 +186,20 @@
     height: 100%;
     object-fit: cover;
     filter: grayscale(60%);
+  }
+
+  .detailsOfAnime {
+    border: 1px solid white; 
+    padding: 15px; 
+    width: 90%;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .popularityRank {
+    border: 1px solid white; 
+    padding: 15px;
+    width: 90%;
   }
 
   h2 {
