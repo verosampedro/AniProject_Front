@@ -2,11 +2,13 @@
 
 import AnimeCovers from '@/components/home/AnimeCovers.vue';
 
+
 </script>
 
 <template>
   
   <AnimeCovers />
+
 
 </template>
 
