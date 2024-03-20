@@ -14,7 +14,12 @@ const router = createRouter({
       name: 'AnimeDetails',
       component: () => import('../views/DetailView.vue'),
       props: true
-    }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/LoginView.vue'),
+    },
   ]
 })
 

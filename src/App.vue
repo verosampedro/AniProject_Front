@@ -11,6 +11,7 @@ import Footer from './components/general/Footer.vue';
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/anime/:id">Detail</RouterLink>
+        <RouterLink to="/login">Login</RouterLink>
       </nav>
 
     </div>
