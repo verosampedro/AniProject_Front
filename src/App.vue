@@ -9,9 +9,10 @@ import Footer from './components/general/Footer.vue';
     <div class="wrapper">
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/anime/:id">Detail</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
+        <RouterLink class="routerLink" to="/">Home</RouterLink>
+        <RouterLink class="routerLink" to="/anime/:id">Detail</RouterLink>
+        <RouterLink class="routerLink" to="/login">Login</RouterLink>
+        <RouterLink class="routerLink" to="/requests">Requests</RouterLink>
       </nav>
 
     </div>
@@ -28,6 +29,11 @@ import Footer from './components/general/Footer.vue';
 
 body {
   background-color: black;
+}
+
+.routerLink {
+  color: white;
+  padding: 5px;
 }
 
 </style>
