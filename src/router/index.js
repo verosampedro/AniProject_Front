@@ -24,6 +24,7 @@ const router = createRouter({
       path: '/requests',
       name: 'requests',
       component: () => import('../views/RequestsView.vue'),
+      props: true
     },
   ]
 })
