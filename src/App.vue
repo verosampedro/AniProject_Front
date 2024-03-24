@@ -13,6 +13,7 @@ import Footer from './components/general/Footer.vue';
         <RouterLink class="routerLink" to="/anime/:id">Detail</RouterLink>
         <RouterLink class="routerLink" to="/login">Login</RouterLink>
         <RouterLink class="routerLink" to="/requests">Requests</RouterLink>
+        <RouterLink class="routerLink" to="/wishlist">Wishlist</RouterLink>
       </nav>
 
     </div>

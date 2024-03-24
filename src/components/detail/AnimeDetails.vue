@@ -1,35 +1,35 @@
 <script>
-
-  export default {
+export default {
   props: ['animeId'],
   data() {
-      return {
-        anime: null
-      };
+    return {
+      anime: null
+    };
   },
   mounted() {
-      this.fetchAnimeDetails();
+    this.fetchAnimeDetails();
   },
   methods: {
-      async fetchAnimeDetails() {
-        if (!this.animeId) {
-          console.error('ID de anime no válido');
-          return;
-        }
-
-        try {
-          const response = await fetch(`https://kitsu.io/api/edge/anime/${this.animeId}`);
-          const data = await response.json();
-          console.log('Datos recibidos:', data); 
-          console.log('Datos del anime:', data.data); 
-          this.anime = data.data;
-        } catch (error) {
-          console.error('Error fetching anime details:', error);
-        }
+    async fetchAnimeDetails() {
+      if (!this.animeId) {
+        console.error('ID de anime no válido');
+        return;
       }
+      try {
+        const response = await fetch(`https://kitsu.io/api/edge/anime/${this.animeId}`);
+        const data = await response.json();
+        console.log('Datos recibidos:', data); 
+        console.log('Datos del anime:', data.data); 
+        this.anime = data.data;
+      } catch (error) {
+        console.error('Error fetching anime details:', error);
+      }
+    },
+    addToWishlist() {
+      // Emit an event or handle adding to wishlist here
+    }
   }
-  };
-  
+};
 </script>
 
 <template>
@@ -52,10 +52,8 @@
 
         <div class="libraryContainer">
 
-          <p class="library">Your library</p>
-          <button class="completed">Completed</button>
-          <button class="wishlist">Wishlist</button>
-          <button class="watching">Watching</button>
+          <p class="library">Add to your wishlist</p>
+          <button @click="addToWishlist" class="wishlist">Wishlist</button>
 
         </div>
 
@@ -133,32 +131,8 @@
       margin-left: 60px;
     }
 
-    .completed {
-      background-color: #7BA670;
-      color: white;
-      font-weight: bold;
-      font-size: large;
-      font-family: "Newsreader", serif;
-      padding: 8px;
-      border-radius: 10px;
-      width: 90%;
-      margin-bottom: 10px;
-    }
-
     .wishlist {
       background-color: #5F9FA7;
-      color: white;
-      font-weight: bold;
-      font-size: large;
-      font-family: "Newsreader", serif;
-      padding: 8px;
-      border-radius: 10px;
-      width: 90%;
-      margin-bottom: 10px;
-    }
-
-    .watching {
-      background-color: #56355E;
       color: white;
       font-weight: bold;
       font-size: large;
