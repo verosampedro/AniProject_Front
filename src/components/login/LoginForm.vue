@@ -44,7 +44,7 @@ const login = async () => {
 <template>
   <div class="login-form">
      <h2>Login</h2>
-     <form @submit.prevent="login">
+     <form @submit.prevent="login()">
        <div class="form-group">
          <input type="text" id="username" v-model="username" placeholder="Username" required>
        </div>

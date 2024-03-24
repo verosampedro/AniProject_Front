@@ -1,24 +1,30 @@
 <script setup>
+import { useAuthStore } from '@/stores/authStore';
+import HeaderLogged from './HeaderLogged.vue';
 
+const authStore = useAuthStore();
 </script>
 
 <template>
 
     <div id="headerContainer">
 
-        <div class="logoContainer">
+        <div v-if="!authStore.isAuthenticated" class="logoContainer">
 
             <img src="../../assets/img/logo.png">
             <h2>ANIPROJECT</h2>
 
         </div>
 
-        <div class="homeContainer">
+        <div v-if="!authStore.isAuthenticated" class="homeContainer">
 
-            <h3>HOME</h3>
-            <h3>LOG IN</h3>
+            <img src="../../assets/img/home.svg">
+            <img src="../../assets/img/login.svg">
 
         </div>
+
+    
+        <HeaderLogged v-if="authStore.isAuthenticated"/>
 
     </div>
 </template>
@@ -60,12 +66,11 @@
     .homeContainer {
 
         display: flex;
+        align-items: center;
 
-        font-family: "Newsreader", serif;
-
-        h3 {
-            margin: 0; 
-            padding: 5px 10px; 
+        img {
+            width: 50px;
+            padding: 10px;
         }
     }
 }
@@ -88,9 +93,9 @@
 
         .homeContainer {
 
-            h3 {
-                padding: 10px 15px; 
-            }
+           img {
+            width: 55px;
+           }
         }
     }
 }
