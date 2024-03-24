@@ -9,11 +9,7 @@ export default {
    request: {
     type: Object,
     required: true,
-  },
-  index: {
-    type: Number,
-    required: true,
-  },
+  }
 }
  };
 

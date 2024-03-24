@@ -1,80 +1,89 @@
-<script>
-export default {
- data() {
-    return {
-      isPopupVisible: false,
-      applicantName: '',
-      requestDate: '',
-      requestTopic: '',
-      requestDescription: '',
-      requests: [],
-      isDetailPopupVisible: false,
-      selectedRequest: null,
-      isEditMode: false,
-    };
- },
- mounted() {
-    this.loadRequestsFromLocalStorage();
- },
- methods: {
-    openPopup() {
-      this.isPopupVisible = true;
-    },
-    closePopup() {
-      this.isPopupVisible = false;
-    },
-    submitRequest() {
-      this.requests.push({
-        id: this.requests.length + 1,
-        topic: this.requestTopic,
-        description: this.requestDescription,
-      });
-      this.saveRequestsToLocalStorage();
-      this.closePopup();
-    },
-    clearFormFields() {
-      this.applicantName = '';
-      this.requestDate = '';
-      this.requestTopic = '';
-      this.requestDescription = '';
-    },
-    deleteRequest(requestToDelete) {
-      const index = this.requests.findIndex(request => request.id === requestToDelete.id);
-      if (index !== -1) {
-        this.requests.splice(index, 1);
-        this.saveRequestsToLocalStorage();
-      }
-    },
-    openDetailPopup(request) {
- console.log('Selected request:', request); // Debugging line
- this.selectedRequest = { ...request }; // Create a new object to ensure reactivity
- this.isDetailPopupVisible = true;
- this.isEditMode = false;
-},
-    closeDetailPopup() {
-      this.isDetailPopupVisible = false;
-      this.selectedRequest = null;
-      this.isEditMode = false;
-    },
-    updateRequest() {
-      const index = this.requests.findIndex(request => request.id === this.selectedRequest.id);
-      if (index !== -1) {
-        this.requests[index] = { ...this.selectedRequest };
-        this.saveRequestsToLocalStorage();
-      }
-      this.closeDetailPopup();
-    },
-    saveRequestsToLocalStorage() {
-      localStorage.setItem('requests', JSON.stringify(this.requests));
-    },
-    loadRequestsFromLocalStorage() {
-      const savedRequests = localStorage.getItem('requests');
-      if (savedRequests) {
-        this.requests = JSON.parse(savedRequests);
-      }
-    },
- },
+<script setup>
+import { ref } from "vue";
+import axios from "axios";
+
+const props = defineProps({
+  request: {
+    type: Object,
+    required: true,
+  }
+});
+
+const requestId = ref();
+const applicantName = ref("");
+const requestDate = ref("");
+const requestTopic = ref("");
+const requestDescription = ref("");
+const editing = ref(false);
+
+const isPopupVisible = ref(false);
+
+const requests = getRequests();
+
+const openPopup = () => {
+  isPopupVisible.value = true;
 };
+
+const closePopup = () => {
+  isPopupVisible.value = false;
+};
+
+/* const editCard = () => {
+  editing.value = true;
+};
+
+const saveChanges = () => {
+  editing.value = false;
+}; */
+
+
+function deleteRequest() {
+    service.delete(props.request.id)
+}
+
+async function createRequest() {
+    const data = {
+        applicantName: applicantName.value,
+        requestDate: requestDate.value,
+        requestTopic: requestTopic.value,
+        requestDescription: requestDescription.value,
+    };
+    console.log(data);
+    try {
+        const response = await axios.post(
+            "http://localhost:8080/api/v1/requests",
+            data,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                withCredentials: true,
+            }
+        );
+        requestId.value = response.data.id;
+        console.log(requestId);
+    } catch (error) {
+        console.error("Error al crear la request:", error);
+        throw error;
+    }
+}
+
+async function getRequests() { 
+    try {
+        const response = await axios.get(
+            "http://localhost:8080/api/v1/requests",
+            {
+                withCredentials: true,
+            }
+        )
+        console.log(response.data)
+        return response.data
+    } catch (error) {
+        console.error("Error al crear la request:", error);
+        throw error;
+    }
+}
+
 </script>
 
 <template>
@@ -85,9 +94,9 @@ export default {
      </div>
  
      <div id="activeRequests">
-       <div v-for="request in requests" :key="request.id" class="request">
+       <div v-for="request in requests" :request="request" :key="request.id" class="request">
          <div class="requestContent">
-           <p>Solicitud: {{ request.topic }}</p>
+           <p>Solicitud: {{ request.requestTopic }}</p>
          </div>
          <div class="actions">
            <img @click.prevent="openDetailPopup(request)" src="/src/assets/img/see.svg" alt="">
@@ -101,7 +110,7 @@ export default {
        <div class="popup">
          <span class="closePopup" @click="closePopup">&times;</span>
          <h2>NUEVA SOLICITUD</h2>
-         <form @submit.prevent="submitRequest">
+         <form @submit.prevent="createRequest">
            <div class="form-group">
              <label for="applicantName">NOMBRE DEL SOLICITANTE:</label>
              <input type="text" v-model="applicantName" required />
