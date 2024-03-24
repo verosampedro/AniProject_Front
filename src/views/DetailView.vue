@@ -19,7 +19,6 @@ export default {
 
 <template>
  <div>
-    <h1>Detalle del Anime</h1>
     <AnimeDetails :animeId="animeId" />
  </div>
 </template>

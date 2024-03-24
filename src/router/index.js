@@ -16,6 +16,12 @@ const router = createRouter({
       props: true
     },
     {
+      path: '/anime/:animeId/characters',
+      name: 'AnimeCharacters',
+      component: () => import('../views/CharacterView.vue'),
+      props: true
+        },
+    {
       path: '/login',
       name: 'login',
       component: () => import('../views/LoginView.vue'),
